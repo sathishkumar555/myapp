@@ -1,3 +1,5 @@
+import React from "react";
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
@@ -40,6 +42,7 @@ const ProductListStyle = styled.ul`
 `;
 
 export default function ProductList(){
+    //console.log('SmartPhones', smartPhoneData.getAll());
     return (
         <>
             <HeaderTitle name="Dashboard"/>

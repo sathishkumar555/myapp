@@ -1,3 +1,5 @@
+import React from "react";
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -30,7 +32,7 @@ export default function Searchbar(){
                     <Col>
                         <div className='position-relative search-wrap text-end'>
                             <input type="text"/>  
-                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                            <button><i className="fa fa-search" aria-hidden="true"></i></button>
                         </div>
                     </Col>
                 </Row>

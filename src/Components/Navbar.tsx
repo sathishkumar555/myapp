@@ -1,8 +1,14 @@
+import React from "react";
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+
+import { lightTheme, darkTheme } from "../Theme";
+import  {useDarkMode} from "../useDarkMode";
+import Toggle from "../Toggler";
 
 const Nav = styled.nav`
     background-color: #dbe0e4;
@@ -42,20 +48,23 @@ const Nav = styled.nav`
 `;
 
 export default function Navbar(){
+    const [theme, themeToggler, mountedComponent] = useDarkMode();
+    const themeMode = theme === 'light' ? lightTheme : darkTheme;
     return (
         <Nav>
             <Container>
                 <Row className='justify-content-between align-items-center'>
                     <Col>
                         <ul className='d-flex m-0 justify-content-center justify-content-sm-start'>
-                            <CustomLink to="/">Dashboard</CustomLink>
-                            <CustomLink to="/productTable">Smartphones</CustomLink>
+                            <a href="/">Dashboard</a>
+                            <a href="/productTable">Smartphones</a>
                         </ul>
                     </Col>
 
                     <Col className='text-center text-sm-end'>
-                        <button className='dark'>Light</button>
-                        <button  className="light">Dark</button>
+
+                        <Toggle theme='dark' toggleTheme={themeToggler} ButtonName='Dark' />
+                        <Toggle theme='light' toggleTheme={themeToggler} ButtonName='Light' />
                     </Col>
                 </Row>
             </Container>
