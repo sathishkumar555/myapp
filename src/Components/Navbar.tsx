@@ -63,8 +63,8 @@ export default function Navbar(){
 
                     <Col className='text-center text-sm-end'>
 
-                        <Toggle theme='dark' toggleTheme={themeToggler} ButtonName='Dark' />
-                        <Toggle theme='light' toggleTheme={themeToggler} ButtonName='Light' />
+                        {/* <Toggle theme='dark' toggleTheme={themeToggler} ButtonName='Dark' /> */}
+                        {/* <Toggle theme='light' toggleTheme={themeToggler} ButtonName='Light' /> */}
                     </Col>
                 </Row>
             </Container>

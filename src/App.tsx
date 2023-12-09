@@ -27,13 +27,13 @@ const App = () =>{
                 <Navbar />
                 <BrowserRouter>
                   <Routes>
-                    <Route path="/" element={<ProductList />}></Route>
-                    <Route path="/productTable" element={<ProductTable />}></Route>
+                    <Route path="/" Component={ProductList}></Route>
+                    <Route path="/product" Component={Navbar}></Route>
                   </Routes>
                 </BrowserRouter>
               </div>
               <div className="text-center">
-                <Toggle theme={theme} toggleTheme={themeToggler} ButtonName='Switch Theme' />
+                {/* <Toggle theme={theme} toggleTheme={themeToggler} ButtonName='Switch Theme' /> */}
               </div>
             </div>
           </>

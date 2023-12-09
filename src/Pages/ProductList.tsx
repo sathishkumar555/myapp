@@ -1,10 +1,11 @@
-import React from "react";
+import React , {useEffect,useState} from "react";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
 import HeaderTitle from '../Components/HeaderTitle';
 import Searchbar from '../Components/SearchSection';
+import { API, Smartphone } from './api'; 
 
 const ProductListStyle = styled.ul`
     list-style: none;
@@ -42,41 +43,37 @@ const ProductListStyle = styled.ul`
 `;
 
 export default function ProductList(){
-    //console.log('SmartPhones', smartPhoneData.getAll());
+    const [smartphones, setSmartphones] = useState<Smartphone[]>([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    const fetchData = async () => {
+      try {
+        const data = await API.getAll();
+        setSmartphones(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log({smartphones});
     return (
         <>
             <HeaderTitle name="Dashboard"/>
             <Searchbar/>
             <Container className='my-3'>
                 <ProductListStyle className='p-0 row'>
-                    <li className="col-12 col-md-6 col-lg-3">
+                    {smartphones.map((item,index)=>{
+                    return <li className="col-12 col-md-6 col-lg-3" key={index}>
                         <div className='list-wrap'>
-                            <img className='product-image'src="https://placehold.co/100x100"/>
-                            <p className='model'>IPhone 14</p>
-                            <p className='brand'>Apple</p>
+                            <img className='product-image'src={item.image}/>
+                            <p className='model'>{item.name}</p>
+                            <p className='brand'>{item.brand}</p>
                         </div>
                     </li>
-                    <li className="col-12 col-md-6 col-lg-3">
-                        <div className='list-wrap'>
-                            <img className='product-image' src="https://placehold.co/100x100"/>
-                            <p className='model'>Galaxy s10</p>
-                            <p className='brand'>Samsung</p>
-                        </div>
-                    </li>
-                    <li className="col-12 col-md-6 col-lg-3">
-                        <div className='list-wrap'>
-                            <img className='product-image'src="https://placehold.co/100x100"/>
-                            <p className='model'>Xiaomi 13 pro</p>
-                            <p className='brand'>Xiaomi</p>
-                        </div>
-                    </li>
-                    <li className="col-12 col-md-6 col-lg-3">
-                        <div className='list-wrap'>
-                            <img className='product-image' src="https://placehold.co/100x100"/>
-                            <p className='model'>IPhone 11</p>
-                            <p className='brand'>Apple</p>
-                        </div>
-                    </li>
+                    })}
                     
                 </ProductListStyle>
             </Container>
